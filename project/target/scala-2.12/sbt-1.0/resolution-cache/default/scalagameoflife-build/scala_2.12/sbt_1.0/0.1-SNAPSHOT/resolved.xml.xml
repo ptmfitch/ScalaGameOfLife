@@ -4,7 +4,7 @@
 		module="scalagameoflife-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20171220121149"
+		publication="20171220135441"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
