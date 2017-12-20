@@ -5,18 +5,21 @@ import scala.io.Source
 
 object Game extends App {
 
+  val fileName: String = "spawner1.txt"
+
   def readBoard(file: String): Board = Board {
-    Source.fromFile(file).getLines()
+    Source.fromFile(s"${GameConfig.boardDir}/$file").getLines()
       .map(s => s.toCharArray.map(c => c == '1').zipWithIndex).zipWithIndex
       .map(y => y._1.map(x => Cell(Vector2(x._2, y._2), x._1))).toArray
   }
 
-  val board: Board = readBoard("spawner1.txt")
+  val board: Board = readBoard(fileName)
   println(board)
 
-  while(board.liveCells() > 3) {
+  //TODO: count generations and have possible max
+  while(board.liveCells() > GameConfig.minCells) {
     println
-    Thread.sleep(500)
+    Thread.sleep(GameConfig.delay)
     board.nextGeneration()
     println(board)
   }
